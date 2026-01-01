@@ -1,0 +1,41 @@
+# --- Build Artifacts (C/C++) ---
+# Object files
+*.o
+*.obj
+
+# Static and Dynamic Libraries
+*.a
+*.so
+*.dylib
+*.dll
+
+# Executables
+# Standard output from gcc
+a.out
+*.out
+*.exe
+
+# --- Temporary & System Files ---
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# The lock files we are testing (don't commit these if they get created)
+*.lock
+
+# --- IDE & Editors ---
+# VS Code
+.vscode/
+# JetBrains (CLion/Rider)
+.idea/
+# Vim
+*.swp
+*.swo
+
+# --- Specific Binaries ---
+# Add names of your compiled programs here to prevent them from being tracked
+single_instance_flock
+single_instance_socket
