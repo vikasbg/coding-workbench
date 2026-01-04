@@ -39,3 +39,5 @@ a.out
 # Add names of your compiled programs here to prevent them from being tracked
 single_instance_flock
 single_instance_socket
+App
+Daemon

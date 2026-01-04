@@ -1,0 +1,29 @@
+
+CC=gcc
+PROJECT=.
+SRC=${PROJECT}/*.c
+# SRC+=${PROJECT}/src/src1/*.c ==> This is wrong, here for make entire RHS is like a constant string, it will not expand it.
+SRC+=$(wildcard ${PROJECT}/src/src1/*.c)
+SRC+=$(wildcard ${PROJECT}/src/src2/*.c)
+SRC+=$(wildcard ${PROJECT}/src/src3/*.c)
+SRC+=$(wildcard ${PROJECT}/src/src4/*.c)
+
+INC=${PROJECT}/inc/
+
+CFLAGS=-g -O2 -I${INC}
+LDFLAGS=
+
+BUILD=${PROJECT}/build
+
+BUILD/%.o: ${SRC}/%.c
+	${CC} -c ${SRC} -o $@
+
+OBJ: ${BUILD}
+
+Daemon: ${SRC}
+	${CC} ${CFLAGS} ${SRC} -o $@
+
+	@echo "App Binary Generated"
+
+Clean:
+	rm Daemon

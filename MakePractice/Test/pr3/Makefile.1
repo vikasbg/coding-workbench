@@ -1,0 +1,14 @@
+CC=gcc
+INC=.
+PROJECT=.
+SRC=${PROJECT}/main.c
+OBJ=${PROJECT}/main.o
+
+CFLAGS= -I$(INC) -g -O2
+
+Daemon: ${OBJ}
+	${CC} ${CFLAGS} ${OBJ} -o $@
+	@echo "Binary Generated"
+
+clean:
+	rm -r ${OBJ} Daemon

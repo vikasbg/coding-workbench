@@ -1,0 +1,45 @@
+CC = gcc
+CFLAGS = -I./inc -g -O2
+BUILD_DIR = build
+
+# 1. Source List (Manual)
+# We list files exactly where they are.
+SRCS = main.c \
+       src/src1/add.c \
+       src/src2/sub.c \
+       src/src3/mul.c \
+       src/src4/div.c
+
+# 2. Object List (Manual)
+# We MUST manually type the 'build/' prefix and the full structure.
+# This tells Make: "These are the exact filenames I expect to see at the end."
+OBJS = $(BUILD_DIR)/main.o \
+       $(BUILD_DIR)/src/src1/add.o \
+       $(BUILD_DIR)/src/src2/sub.o \
+       $(BUILD_DIR)/src/src3/mul.o \
+       $(BUILD_DIR)/src/src4/div.o
+
+# 3. Final Target
+# The binary also goes inside the build folder
+$(BUILD_DIR)/Daemon: $(OBJS)
+	@# Link all the objects into the final executable
+	$(CC) $(OBJS) $(CFLAGS) -o $@
+	@echo "App Binary Generated at: $@"
+
+# 4. The Pattern Rule (The "Bridge")
+# syntax: build/%.o (Target) depends on %.c (Source)
+# Example: build/src/src1/add.o DEPENDS ON src/src1/add.c
+$(BUILD_DIR)/%.o: %.c
+	@# Step A: Create the specific folder structure for THIS file.
+	@# $(dir $@) extracts the folder part from the target name 
+	@# (e.g., "build/src/src1/")
+	mkdir -p $(dir $@)
+	
+	@# Step B: Compile
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled: $@"
+
+# 5. Clean
+# We just delete the whole build folder
+clean:
+	rm -rf $(BUILD_DIR)

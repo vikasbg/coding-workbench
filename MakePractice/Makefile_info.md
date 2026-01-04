@@ -139,3 +139,12 @@ add.o: add.c
 - In above `Makefile if you see certain flags are used.
 - These flags are not used in Implicit Rules.
 - So, If we want to such flags then we must have our own custom rules.
+
+# Make's mental flow for compiling multiple `.c` files in a big project
+1. Gather Files: Find all my .c files using `wildcard` function and symbol i.e. `*`.
+
+2. Calculate Objects: Create a list of the .o files I want to have. (Replace .c with .o in the list).
+
+3. Link Rule: Tell Daemon to depend on that list of object files (variable), not a rule name.
+
+4. Compile Rule: Tell Make how to build one .o file from one .c file.
