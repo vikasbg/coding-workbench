@@ -1,0 +1,14 @@
+
+binary: main.c add.c pr.c
+	gcc -I./ main.c add.c pr.c -o main
+	@echo "Binary generated"
+
+
+# --------------- Result ---------------------
+# $ make
+# gcc -I./ main.c add.c pr.c -o main
+# Binary generated
+
+# Issue:
+# Our makefile is such a way that if any dependancy changes it will compile all the dependancies.
+# So, refer the new Makefile which has solution of this 

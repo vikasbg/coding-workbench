@@ -1,0 +1,11 @@
+all: tooltip
+
+tooltip: main.c
+	gcc -g -O0 -o $@ main.c
+
+#In above with $@ after -o, we are saying keep binary name same target name, so binary name will be tooltip only.
+
+clean:
+	rm -rf tooltip
+
+.PHONY: all clean

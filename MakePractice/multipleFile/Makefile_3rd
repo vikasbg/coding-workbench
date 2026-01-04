@@ -1,0 +1,20 @@
+
+main: main.o add.o pr.o
+	gcc -I./ main.o add.o pr.o -o main
+	@echo "Binary generated"
+
+# main.o: main.c
+# 	gcc -I./ -c main.c -o main.o
+# 	@echo "main.o generated."
+
+# add.o: add.c
+# 	gcc -I./ -c add.c -o add.o
+# 	@echo "add.o generated."
+
+# pr.o: pr.c
+# 	gcc -I./ -c pr.c -o pr.o
+# 	@echo "pr.o generated."
+
+clean:
+	rm -rf *.o main
+	@echo "Binaries cleaned"

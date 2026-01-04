@@ -1,0 +1,12 @@
+all clean tooltip:
+	cd src && $(MAKE) $@
+
+.PHONY: all clean
+
+# Here, we are telling make tool that all & clean are the target which do not generate files.
+# So, don't worry about their timestamp just execute the command for these targets.
+
+# $(MAKE) => Informs the make tool use make command, default variable for make itself.
+
+# $@ is the default rule, it indicates/points to the name of the target which is executing it.
+# It simply says which target the user has choosen.

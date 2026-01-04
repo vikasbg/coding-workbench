@@ -1,0 +1,54 @@
+
+
+
+# ---------------------- Commented Example ----------------------
+main: main.o add.o pr.o
+	gcc main.o add.o pr.o -o main
+	@echo "Binary generated"
+
+# main.o: main.c
+# 	gcc -I./ -c main.c -o main.o
+# 	@echo "main.o generated."
+
+# add.o: add.c
+# 	gcc -I./ -c add.c -o add.o
+# 	@echo "add.o generated."
+
+# pr.o: pr.c
+# 	gcc -I./ -c pr.c -o pr.o
+# 	@echo "pr.o generated."
+
+clean:
+	rm -rf *.o main
+	@echo "Binaries cleaned"
+# -------------------------------------------------------------
+
+# Solution:
+# Instead of specifying .c file as dependancy lets have .o file as dependancy, and give .o file to gcc command.
+# But what if any dependant file is not available or does not exist in the current directory?
+# So, for this we need to add 1 more rule we call them as Supplimentary rule.
+# The very 1st target is called Primary Target i.e. `main` here is the Primary target.
+# Those secondary target will generate those dependancies.
+# Here main.o, add.o & pr.o are secondary dependancies.
+
+# Now, lets say build is done now remove/clean directory by deleting those .o and binary file.
+# So for this we need create 1 more target with name `clean`, this target will have not dependancies since we just want to delete
+# existing files only.
+# Also note that by default(means we do not pass any other target as argument) make will execute only primary target
+# So, when we do "make" => Here only Primary Target will execute.
+# And when we do "make clean" => Here we are asking to execute only clean target.
+
+# It Means at a time make will execute only 1 target.
+
+
+# 
+# --------------- Result ---------------------
+# $ make
+# gcc -I./ -c main.c -o main.o
+# main.o generated.
+# gcc -I./ -c add.c -o add.o
+# add.o generated.
+# gcc -I./ -c pr.c -o pr.o
+# pr.o generated.
+# gcc main.o add.o pr.o -o main
+# Binary generated

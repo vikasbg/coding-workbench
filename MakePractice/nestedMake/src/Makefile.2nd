@@ -1,0 +1,18 @@
+all: tooltip
+
+tooltip: main.c
+        gcc -g -O0 -o $@ main.c
+
+check: all
+        ./tooltip | grep "Hello from .*tooltip"
+        @echo "*** ALL TESTS PASSED ***"
+
+install:
+        cp tooltip ../$(shell pwd)/build
+        chown root:root ../$(shell pwd)/build/tooltip
+        chmod +x ../$(shell pwd)/build/tooltip
+
+clean:
+        rm -f tooltip
+
+.PHONY: all clean check install

@@ -1,0 +1,28 @@
+# The makefile consists of targets and the rules for achieving the
+# targets. The syntax of declaring the targets and rules
+
+# <target-name>: <dependencies>
+# <rules for creating the target>
+
+# target=program (creating the application)
+program: main.o pr.o add.o
+        gcc main.o pr.o add.o -o program
+        @echo "Application Created Successfully"
+
+# target= main.o (Generate relocatable from main.c)
+main.o: main.c
+        gcc -I./ -c -g -O2 -o main.o main.c
+        @echo "Relocatable main.o generated"
+
+# target= pr.o (Generate relocatable from pr.c)
+pr.o: pr.c
+        gcc -c -g -O2 -o pr.o pr.c
+        @echo "Relocatable pr.o generated"
+
+# target= add.o (Generate relocatable from add.c)
+add.o: add.c
+        gcc -c -g -O2 -o add.o add.c
+        @echo "Relocatable add.o generated"
+
+# In above if you few flags have been passed, which are not in the implicit rules.
+So to use the flags we must have our custom rules.
